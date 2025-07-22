@@ -29,7 +29,7 @@ Welcome! This is my cozy collection of dotfiles to make your Mac beautiful, prod
    ```
 2. **Clone this repo:**
    ```sh
-   git clone https://github.com/...
+   git clone https://github.com/shiiinooo/dotfiles.git
    cd dotfiles
    ```
 3. **Install configs:**
