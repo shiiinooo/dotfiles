@@ -131,6 +131,42 @@ return {
           },
         })
       end,
+      ["pyright"] = function()
+        -- Function to find the best Python interpreter
+        local function find_python_interpreter()
+          -- Check for virtual environment in current directory
+          local venv_path = vim.fn.getcwd() .. "/venv/bin/python"
+          if vim.fn.filereadable(venv_path) == 1 then
+            return venv_path
+          end
+          
+          -- Check for .venv
+          local dot_venv_path = vim.fn.getcwd() .. "/.venv/bin/python"
+          if vim.fn.filereadable(dot_venv_path) == 1 then
+            return dot_venv_path
+          end
+             
+          -- Fallback to system python
+          return vim.fn.exepath("python")
+        end
+
+        -- configure python server to use virtual environment
+        lspconfig["pyright"].setup({
+          capabilities = capabilities,
+          settings = {
+            python = {
+              analysis = {
+                autoImportCompletions = true,
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = "workspace",
+                typeCheckingMode = "basic",
+              },
+              pythonPath = find_python_interpreter(),
+            },
+          },
+        })
+      end,
     }})
   end,
 }
