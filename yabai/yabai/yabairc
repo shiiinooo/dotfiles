@@ -1,30 +1,39 @@
-# default layout (can be bsp, stack or float)
-yabai -m config layout bsp
+# global settings
+yabai -m config                                 \
+    external_bar                 all:38:0       \
+    menubar_opacity              1.0            \
+    mouse_follows_focus          off            \
+    focus_follows_mouse          off            \
+    display_arrangement_order    default        \
+    window_origin_display        default        \
+    window_placement             second_child   \
+    window_zoom_persist          off            \
+    window_shadow                on             \
+    window_animation_duration    0.0            \
+    window_animation_easing      ease_out_circ  \
+    window_opacity_duration      0.15           \
+    active_window_opacity        0.92           \
+    normal_window_opacity        0.92           \
+    window_opacity               on             \
+    insert_feedback_color        0xffd75f5f     \
+    split_ratio                  0.50           \
+    split_type                   auto           \
+    auto_balance                 off            \
+    top_padding                  12             \
+    bottom_padding               12             \
+    left_padding                 12             \
+    right_padding                12             \
+    window_gap                   06             \
+    layout                       bsp            \
+    mouse_modifier               fn             \
+    mouse_action1                move           \
+    mouse_action2                resize         \
+    mouse_drop_action            swap
 
-# new window spawns to the right if vertical split, or bottom if horizontal split
-yabai -m config window_placement second_child
 
-# padding set to 12px
-yabai -m config top_padding 12
-yabai -m config bottom_padding 12
-yabai -m config left_padding 12
-yabai -m config right_padding 12
-yabai -m config window_gap 12
 
-# -- mouse settings --
 
-# center mouse on window with focus
-yabai -m config mouse_follows_focus on
 
-# modifier for clicking and dragging with mouse
-yabai -m config mouse_modifier alt
-# set modifier + left-click drag to move window
-yabai -m config mouse_action1 move
-# set modifier + right-click drag to resize window
-yabai -m config mouse_action2 resize
-
-# when window is dropped in center of another window, swap them (on edges it will split it)
-yabai -m mouse_drop_action swap
 
 
 # disable specific apps
@@ -37,6 +46,13 @@ yabai -m rule --add app="^League of Legends$" manage=off
 yabai -m rule --add app="^Blitz$" manage=off
 yabai -m rule --add app="^Chromium$" manage=off
 
-borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0 &
 
-yabai -m config external_bar all:32:0
+# # sketchybar
+# yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+# yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
+# yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
+yabai -m signal --add event=application_front_switched action="sketchybar --trigger title_change"
+# yabai -m signal --add event=window_focused action="sketchybar --trigger title_change"
+# yabai -m signal --add event=window_title_changed action="sketchybar --trigger title_change" active=yes
+
+echo "yabai configuration loaded.."
