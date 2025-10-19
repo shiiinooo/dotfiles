@@ -30,12 +30,6 @@ yabai -m config                                 \
     mouse_action2                resize         \
     mouse_drop_action            swap
 
-
-
-
-
-
-
 # disable specific apps
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
@@ -45,7 +39,6 @@ yabai -m rule --add app="^Riot Client$" manage=off
 yabai -m rule --add app="^League of Legends$" manage=off
 yabai -m rule --add app="^Blitz$" manage=off
 yabai -m rule --add app="^Chromium$" manage=off
-
 
 # # sketchybar
 # yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
